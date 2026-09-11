@@ -5,42 +5,33 @@ import RxCocoa
 public struct Chapter03 {
     public static func main() {
         /*
-         Traitsについて
-         RxSwiftの特性
-         1. Single：1つの要素またはエラーを返す。ネットワークリクエストなどに利用
-         2. Maybe：SingleとCompletableの組み合わせ。単一の要素を出すか、完全なまたはエラーイベント。Optionalな結果を返す操作に使用
-         3. Completable：GETやPOSTのような結果、値を出さず、CompleteかErrorのイベント」を出す。PUTやDELETEのような結果を返さないネットワークリクエストに利用
-         ※ 3つとも副作用を共有しない、つまり、新しい購読者に前の要素を放出しない。
-         ※ asObservable()メソッドを使えば、いずれもObservableに戻すことが可能
-         ※ asSingle()メソッドを使えば、ObservableからSingleを得ることが可能
-         ※ asCompletable()メソッドを使えば、ObservableからCompletableを得ることが可能
-         ※ asMaybe()メソッドを使えば、ObservableからMaybeを得ることが可能
+         Traitsは、ストリームが満たす契約を型で表す。
+         - Single: 値を1つ返すか、エラーで終了する。
+         - Maybe: 値を1つ返す、値なしで完了する、エラーで終了する、のいずれか。
+         - Completable: 値を返さず、完了またはエラーだけを通知する。HTTPメソッドとの固定の対応はない。
+         これらの型だけでは購読の共有や過去の値の再送は保証されない。
+         asSingle／asMaybeへの変換では、元のObservableの要素数が契約を満たす必要がある。
+         Observableの要素を無視して完了だけを扱う場合はignoreElementsを使う。
 
-         RxCocoaの特性
-         1. Driver：主にUIレイヤーを駆動するために使用。もしあれば最後に放出される要素を共有
-         2. Signal：Driverと似ているが、オブザーバーがサブスクライブした時に最後のイベントを発生させることはない
-         3. ControlProperty：プロパティを表す。UIイベントをリアクティブな方法で表す。最後に放出された要素を共有し、UI要素の割り当てが解除された時点で完了
-         4. ControlEvent：UIエレメントのイベントを表す。(ex)クリックやタップ。加入時の初期値は送信されない
-         ※ RxCocoaに共通しているのは、エラーをアウトしないこと、イベントを発生させること
-         ※ メインスケジューラーで実行されるため、UI作業に最適
-         ※ asDriver(onErrorJustReturn: "")で、ObservableからDriverを取得
-         ※ asSignal(onErrorJustReturn: "")で、ObservableからSignalを取得
-         ※ ControlPropertyの例として、textField.rx.textやbutton.rx.tapなど
+         RxCocoaのUI用Traits:
+         - Driver: エラーを流さず、メインスレッドへ配送する。接続中の購読者で最新の1件を共有する。
+         - Signal: エラーを流さず、メインスレッドへ配送する。新しい購読者へ過去の値を再送しない。
+         - ControlProperty: textField.rx.textなど、UI要素の値を読み書きする境界。
+         - ControlEvent: button.rx.tapなど、UI操作のイベントを表す。初期値を送らない。
+         Driverのdriveなど、UIへのバインドはメインスレッドから行う。
          */
 
         /*
-         Subjectsについて：ObservableとしてもObserverとして機能する
-         RxSwift
-         1. PublishedSubject：サブスクリプション後にのみ、新しいオブザーバーにイベントを放出。引数なしで初期化可能
-         2. BehaviorSubject：新しいObserverに対して、前回放出した最後のイベントから順にイベントを放出
-         3. ReplaySubject：サブスクリプションの時間に関係なく、新しいObserverに全てのイベントを放出
-         4. AsyncSubject：最後のイベントのみ、完了後にのみイベントを放出
+         SubjectはObservableとObserverの両方の役割を持つ。
+         - PublishSubject: 購読開始後の値を通知する。
+         - BehaviorSubject: 初期値または最新の値を、新しい購読者へ通知する。
+         - ReplaySubject: 設定したバッファに保持している値を、新しい購読者へ再送する。
+         - AsyncSubject: 正常完了時に最後の値を通知する。エラー終了時は値を通知しない。
          */
 
         /*
-         RxSwift
-         1. PublishRelay：
-         2. BehaviorRelay：サブジェクトをラップし、次のイベントを受け入れ、発するだけ。完了イベント、エラーイベントを追加することはできない。UIイベントに最適
+         Relayは値の受け渡しに限定したSubjectのラッパーで、完了やエラーを受け付けない。
+         PublishRelayは購読開始後の値、BehaviorRelayは現在の値と以降の更新を通知する。
          */
 
         let os1 = Observable.just("e1")

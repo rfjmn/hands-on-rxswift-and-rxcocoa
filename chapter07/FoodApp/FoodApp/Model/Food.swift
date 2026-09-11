@@ -1,10 +1,3 @@
-//
-//  Food.swift
-//  FoodApp
-//
-//  Created by 藤門莉生 on 2023/05/02.
-//
-
 import Foundation
 
 struct Food {

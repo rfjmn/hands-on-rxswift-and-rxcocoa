@@ -7,7 +7,7 @@ import RxRelay
  Observable [sequence] - emits events [notifications of change] asyncronously
  Observer - subscribes to Observable in order to receive events
  
- Subject = Obseravable + Observer
+ Subject = Observable + Observer
     - PublishSubject - only emits new elements to subscribers
     - BehaviorSubject - emits the last element to new subscribers
     - ReplaySubject - emits a buffer size of elements to new subscribers
@@ -66,7 +66,7 @@ let asyncSubject = AsyncSubject<String>()
 asyncSubject.onNext("async event1")
 asyncSubject.onNext("async event2")
 
-// AsyncSubjectは、.onCompleted()が呼ばれると購読される
+// AsyncSubjectは、.onCompleted()を受け取ると、保持していた最後の値を購読者へ通知する
 asyncSubject.onCompleted()
 
 asyncSubject.subscribe(

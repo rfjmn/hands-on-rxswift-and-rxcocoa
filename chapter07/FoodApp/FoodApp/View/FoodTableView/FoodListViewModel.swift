@@ -1,5 +1,6 @@
 import RxSwift
 
+/// 検索入力を、RxDataSourcesで表示するセクションのストリームへ変換するViewModel。
 final class FoodListViewModel {
     private let searchMenu: SearchFoodMenuUseCase
 
@@ -7,6 +8,7 @@ final class FoodListViewModel {
         self.searchMenu = searchMenu
     }
 
+    /// 検索入力を300ミリ秒のthrottleで間引き、連続して同じ検索語が流れた場合は検索を繰り返しません。
     func sections(matching query: Observable<String>) -> Observable<[SectionModel]> {
         let searchMenu = searchMenu
         return query

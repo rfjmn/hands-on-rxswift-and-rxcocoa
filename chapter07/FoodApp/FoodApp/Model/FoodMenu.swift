@@ -1,14 +1,17 @@
 import Foundation
 
+/// 見出しと料理の一覧を保持するメニューの分類。
 struct FoodCategory {
     let header: String
     let items: [Food]
 }
 
+/// メニューの分類と料理を提供するデータ境界。
 protocol FoodRepository {
     var categories: [FoodCategory] { get }
 }
 
+/// 料理名を大文字・小文字を区別せずに検索するUseCase。
 struct SearchFoodMenuUseCase {
     private let repository: FoodRepository
 
@@ -16,6 +19,7 @@ struct SearchFoodMenuUseCase {
         self.repository = repository
     }
 
+    /// 検索語を含む料理を返します。分類の順序と空の分類は維持し、空の検索語では全料理を返します。
     func execute(query: String) -> [FoodCategory] {
         repository.categories.map { category in
             FoodCategory(header: category.header, items: category.items.filter {
