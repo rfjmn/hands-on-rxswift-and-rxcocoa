@@ -1,0 +1,34 @@
+[
+  {
+    "kind": "app",
+    "name": "FoodApp",
+    "scheme": "FoodApp",
+    "project": "chapter07/FoodApp/FoodApp.xcodeproj",
+    "workspace": "chapter07/FoodApp/FoodApp.xcworkspace"
+  },
+  {
+    "kind": "package",
+    "name": "chapter01",
+    "path": "chapter01"
+  },
+  {
+    "kind": "package",
+    "name": "chapter03",
+    "path": "chapter03"
+  },
+  {
+    "kind": "package",
+    "name": "chapter04",
+    "path": "chapter04"
+  },
+  {
+    "kind": "package",
+    "name": "chapter05",
+    "path": "chapter05"
+  },
+  {
+    "kind": "package",
+    "name": "chapter06",
+    "path": "chapter06"
+  }
+]
