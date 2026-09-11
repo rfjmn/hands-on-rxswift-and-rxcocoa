@@ -2,7 +2,7 @@ import RxSwift
 import RxCocoa
 
 @main
-public struct chapter03 {
+public struct Chapter03 {
     public static func main() {
         /*
          Traitsについて
@@ -15,7 +15,7 @@ public struct chapter03 {
          ※ asSingle()メソッドを使えば、ObservableからSingleを得ることが可能
          ※ asCompletable()メソッドを使えば、ObservableからCompletableを得ることが可能
          ※ asMaybe()メソッドを使えば、ObservableからMaybeを得ることが可能
-         
+
          RxCocoaの特性
          1. Driver：主にUIレイヤーを駆動するために使用。もしあれば最後に放出される要素を共有
          2. Signal：Driverと似ているが、オブザーバーがサブスクライブした時に最後のイベントを発生させることはない
@@ -27,7 +27,7 @@ public struct chapter03 {
          ※ asSignal(onErrorJustReturn: "")で、ObservableからSignalを取得
          ※ ControlPropertyの例として、textField.rx.textやbutton.rx.tapなど
          */
-        
+
         /*
          Subjectsについて：ObservableとしてもObserverとして機能する
          RxSwift
@@ -36,13 +36,13 @@ public struct chapter03 {
          3. ReplaySubject：サブスクリプションの時間に関係なく、新しいObserverに全てのイベントを放出
          4. AsyncSubject：最後のイベントのみ、完了後にのみイベントを放出
          */
-        
+
         /*
          RxSwift
          1. PublishRelay：
          2. BehaviorRelay：サブジェクトをラップし、次のイベントを受け入れ、発するだけ。完了イベント、エラーイベントを追加することはできない。UIイベントに最適
          */
-        
+
         let os1 = Observable.just("e1")
         let disposeBag = DisposeBag()
         let _ = os1.asSingle()
@@ -56,7 +56,7 @@ public struct chapter03 {
             )
             .disposed(by: disposeBag)
         // result: e1
-        
+
         let os2 = Observable.of("e1", "e2")
         let _ = os2.asSingle()
             .subscribe(
@@ -69,7 +69,7 @@ public struct chapter03 {
             )
             .disposed(by: disposeBag)
         // result: Sequence contains more than one element.
-        
+
         Completable.empty()
             .subscribe(
                 onCompleted: {
@@ -80,7 +80,7 @@ public struct chapter03 {
                 }
             )
             .disposed(by: disposeBag)
-        
+
         let os3 = Observable.of("e2")
         os3.asMaybe()
             .subscribe(
@@ -95,7 +95,7 @@ public struct chapter03 {
                 }
             )
             .disposed(by: disposeBag)
-        
+
         let os4 = Observable<Any>.empty()
         os4.asMaybe()
             .subscribe(
@@ -110,7 +110,7 @@ public struct chapter03 {
                 }
             )
             .disposed(by: disposeBag)
-        
+
         let os5 = Observable.of("e3", "e4")
         os5.asDriver(onErrorJustReturn: "default")
             .drive(

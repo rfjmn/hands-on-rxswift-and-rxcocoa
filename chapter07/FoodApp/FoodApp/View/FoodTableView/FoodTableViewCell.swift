@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class FoodTableViewCell: UITableViewCell {
+final class FoodTableViewCell: UITableViewCell {
     @IBOutlet weak var foodImageView: UIImageView!
     @IBOutlet weak var foodLabel: UILabel!
 }

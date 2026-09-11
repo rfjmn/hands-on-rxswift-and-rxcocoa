@@ -30,5 +30,10 @@
     "kind": "package",
     "name": "chapter06",
     "path": "chapter06"
+  },
+  {
+    "kind": "package",
+    "name": "FoodMenuCore",
+    "path": "chapter07/FoodApp"
   }
 ]

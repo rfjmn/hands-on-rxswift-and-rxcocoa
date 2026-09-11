@@ -12,14 +12,14 @@ import RxCocoa
 /*
  Chapter07の【10.】のViewController
  */
-class Ep1ViewController: UIViewController {
+final class Ep1ViewController: UIViewController {
 
     let tableViewItems = Observable.just(["Item 1", "Item 2", "Item 3", "Item 4"])
-    
+
     let disposeBag = DisposeBag()
-    
-    @IBOutlet weak var tableView: UITableView!
-    
+
+    @IBOutlet private weak var tableView: UITableView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // tableView.delegate = self
@@ -31,7 +31,7 @@ class Ep1ViewController: UIViewController {
                 cell.contentConfiguration = contentConfiguration
             }
             .disposed(by: disposeBag)
-        
+
     }
 }
 
@@ -46,14 +46,14 @@ extension ViewController: UITableViewDelegate {
 /*
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell")!
-        
+
         var contentConfiguration = cell.defaultContentConfiguration()
         contentConfiguration.text = tableViewItems[indexPath.row]
         cell.contentConfiguration = contentConfiguration
-        
-        
+
+
         return cell
     }
 }

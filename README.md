@@ -31,9 +31,14 @@ swift Scripts/verify.swift --index 0
 | 3 | `chapter04` | Swiftテスト | `chapter04` |
 | 4 | `chapter05` | Swiftテスト | `chapter05` |
 | 5 | `chapter06` | Swiftテスト | `chapter06` |
+| 6 | `FoodMenuCore` | Swift回帰テスト | `chapter07/FoodApp/Package.swift` |
 
 アプリを操作するには表のworkspace（ある場合）またはprojectをXcodeで開き、対象のschemeとiPhone Simulatorを選択して実行します。実機で動かす場合は、ご自身のSigning Teamを設定してください。
 
 ## CIと検証範囲
 
 `Quality` ワークフローは上記と同じ一覧・スクリプトを使い、対象ごとにビルドまたはテストを実行します。ビルドの成功だけでは、画面表示、アクセシビリティ、通信先の動作、テスト網羅性は保証されません。UIサンプルはSimulator上での操作確認も必要です。
+
+## Swiftコード品質
+
+[設計・命名・所有関係の方針と、この教材への適用範囲](SWIFT-QUALITY.md)を参照してください。

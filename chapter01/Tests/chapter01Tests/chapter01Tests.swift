@@ -6,6 +6,6 @@ final class chapter01Tests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
-        XCTAssertEqual(chapter01().text, "Hello, World!")
+        XCTAssertEqual(Chapter01().text, "Hello, World!")
     }
 }

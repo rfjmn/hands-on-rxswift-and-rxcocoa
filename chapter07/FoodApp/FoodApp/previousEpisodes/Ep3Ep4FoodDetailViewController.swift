@@ -10,19 +10,19 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class Ep3Ep4FoodDetailViewController: UIViewController {
+final class Ep3Ep4FoodDetailViewController: UIViewController {
     @IBOutlet weak var foodImageView: UIImageView!
-    
+
     // var imageName: String = ""
-    
+
     let disposeBag = DisposeBag()
     let imageName: BehaviorRelay = BehaviorRelay<String>(value: "")
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // foodImageView.image = UIImage(named: imageName)
-        
+
         imageName
             .map { name in
                 UIImage.init(named: name)

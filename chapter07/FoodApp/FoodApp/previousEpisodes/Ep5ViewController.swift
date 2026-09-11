@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class Ep5ViewController: UIViewController {
+final class Ep5ViewController: UIViewController {
 
     let tableViewItems = BehaviorRelay.init(value: [
         Food.init(name: "Hamburger", image: "hamburger"),
@@ -26,20 +26,20 @@ class Ep5ViewController: UIViewController {
         Food.init(name: "Tiramisu", image: "tiramisu"),
         Food.init(name: "Cake", image: "cake"),
     ])
-    
+
     let disposeBag = DisposeBag()
-    
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
-    
+
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var searchBar: UISearchBar!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.title = "Menu"
-        
+
         // tableView.delegate = self
         // tableView.dataSource = self
-        
+
         let foodQuery = searchBar
             .searchTextField
             .rx
@@ -47,8 +47,8 @@ class Ep5ViewController: UIViewController {
             .orEmpty
             .throttle(.milliseconds(300), scheduler: MainScheduler.instance)
             .distinctUntilChanged()
-            .map { query in
-                self.tableViewItems.value.filter { food in
+            .map { [tableViewItems] query in
+                tableViewItems.value.filter { food in
                     query.isEmpty || food.name.lowercased().contains(query.lowercased())
                 }
             }
@@ -57,11 +57,11 @@ class Ep5ViewController: UIViewController {
                 cell.foodImageView.image = UIImage(named: tableViewItem.image)
             }
             .disposed(by: disposeBag)
-        
+
         tableView.rx.modelSelected(Food.self)
             .subscribe(
-                onNext: {
-                    foodObject in
+                onNext: { [weak self] foodObject in
+                    guard let self = self else { return }
                     let foodVC = self.storyboard?.instantiateViewController(withIdentifier: "FoodVC") as! FoodDetailViewController
                     // foodVC.imageName = foodObject.image
                     foodVC.imageName.accept(foodObject.image)
@@ -69,7 +69,7 @@ class Ep5ViewController: UIViewController {
                 }
             )
             .disposed(by: disposeBag)
-        
+
         tableView
             .rx
             .itemSelected
@@ -79,7 +79,7 @@ class Ep5ViewController: UIViewController {
                 }
             )
             .disposed(by: disposeBag)
-        
+
     }
 }
 

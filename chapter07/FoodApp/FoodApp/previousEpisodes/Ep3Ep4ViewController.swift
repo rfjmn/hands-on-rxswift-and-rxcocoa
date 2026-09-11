@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class Ep3Ep4ViewController: UIViewController {
+final class Ep3Ep4ViewController: UIViewController {
 
     let tableViewItems = Observable.just([
         Food.init(name: "Hamburger", image: "hamburger"),
@@ -17,30 +17,30 @@ class Ep3Ep4ViewController: UIViewController {
         Food.init(name: "Salmon", image: "salmon"),
         Food.init(name: "Spaghetti", image: "spaghetti")
     ])
-    
+
     let disposeBag = DisposeBag()
-    
-    @IBOutlet weak var tableView: UITableView!
-    
+
+    @IBOutlet private weak var tableView: UITableView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.title = "Menu"
-        
+
         // tableView.delegate = self
         // tableView.dataSource = self
-        
+
         tableViewItems
             .bind(to: tableView.rx.items(cellIdentifier: "myCell", cellType: FoodTableViewCell.self)) { (row, tableViewItem, cell) in
                 cell.foodLabel.text = tableViewItem.name
                 cell.foodImageView.image = UIImage(named: tableViewItem.image)
             }
             .disposed(by: disposeBag)
-        
+
         tableView.rx.modelSelected(Food.self)
             .subscribe(
-                onNext: {
-                    foodObject in
+                onNext: { [weak self] foodObject in
+                    guard let self = self else { return }
                     let foodVC = self.storyboard?.instantiateViewController(withIdentifier: "FoodVC") as! Ep3Ep4FoodDetailViewController
                     // foodVC.imageName = foodObject.image
                     foodVC.imageName.accept(foodObject.image)
@@ -48,7 +48,7 @@ class Ep3Ep4ViewController: UIViewController {
                 }
             )
             .disposed(by: disposeBag)
-        
+
         tableView
             .rx
             .itemSelected
@@ -58,7 +58,7 @@ class Ep3Ep4ViewController: UIViewController {
                 }
             )
             .disposed(by: disposeBag)
-        
+
     }
 }
 

@@ -2,7 +2,7 @@ import RxSwift
 import RxCocoa
 
 @main
-public struct chapter05 {
+public struct Chapter05 {
     public private(set) var text = "Hello, World!"
 
     public static func main() {
@@ -12,27 +12,27 @@ public struct chapter05 {
          - デバッグ演算子
          - メモリリークのデバッグ
          */
-        
+
         /*
          【Individual error handling】
          subscribe(onError:)
             - handling errors directly
-         
+
          do(onError)
             - handing errors as a side effect
          */
-        
+
         /*
          【Individual error handling】
          catch & retry
-         
+
          catch
             - エラー回復を細かく指定できる様々なオーバーロードがあり、エラー時に何度か操作をやり直すことができる
-         
+
          retry
             - enables retries in case of errored sequence
          */
-        
+
         /*
          【General error handling】
          - デフォルトのエラー処理機構を提供するglobal Hook
@@ -42,7 +42,7 @@ public struct chapter05 {
             - Hooks.defaultErrorHandlerは、DEBUGモードでは受け取ったエラーを表示し、RELEASEでは何もしない
             - コールスタックの詳細なロギングを有効にするには、Hooks.recordCallStackOnErrorにフラグtrueを設定
          */
-        
+
         /*
          Reactive Applicationdでは、デバッグ演算子を利用
          - デバッグオペレーターは、全てのイベントを標準出力に出力
@@ -61,13 +61,13 @@ public struct chapter05 {
                 }
             )
             .disposed(by: disposeBag)
-        
+
         /*
          メモリリークのトラブルシューティング
          1. enable Debug Mode
             - add TRACE_RESOURCES to the RxSwift target build settings under Other Swift Flags
          */
-        
+
         /*
         let myObservable = Observable.just("Debug memory leaks")
         let myObserver = myObservable.subscribe(

@@ -1,7 +1,7 @@
 import RxSwift
 
 @main
-public struct chapter01 {
+public struct Chapter01 {
     public private(set) var text = "Hello, World!"
 
     public static func main() {
@@ -14,7 +14,7 @@ public struct chapter01 {
                 print("Completed")
             }
         )
-        
+
         let os1 = Observable.just("Hi there!")
         let sub1 = os1.subscribe(
             onNext: { event in
@@ -31,10 +31,10 @@ public struct chapter01 {
             }
         )
         // sub1.dispose()
-        
+
         let disposeBag = DisposeBag()
         sub1.disposed(by: disposeBag)
-        
+
         let os2 = Observable.from([1, 2, 3])
         let _ = os2
             .subscribe(
@@ -43,7 +43,7 @@ public struct chapter01 {
                 }
             )
             .disposed(by: disposeBag)
-        
+
         Observable.of("apple", "pears", "bananas")
             .subscribe(
                 onNext: {

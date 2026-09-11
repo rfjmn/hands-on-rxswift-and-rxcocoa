@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2FC1194D5E6DDB10EC46D682 /* FoodListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F15796B987CA8079D7EA81D /* FoodListViewModel.swift */; };
 		32FDA01E1D28ACFF0125746E /* Pods_FoodApp_FoodAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 227D99EB1F25945BED36D45A /* Pods_FoodApp_FoodAppUITests.framework */; };
+		334D9C1E00F1348CF372CB8C /* FoodMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FB0BEEE315C99996EA3C3 /* FoodMenu.swift */; };
 		348410EE2A009D2D00329394 /* Ep1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348410ED2A009D2D00329394 /* Ep1ViewController.swift */; };
 		348410F12A009DBE00329394 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348410F02A009DBE00329394 /* Food.swift */; };
 		348410F42A009FFF00329394 /* FoodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348410F32A009FFF00329394 /* FoodTableViewCell.swift */; };
@@ -74,11 +76,13 @@
 		34AC8BCE2A0088F70088AF82 /* FoodAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		34AC8BD22A0088F70088AF82 /* FoodAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodAppUITests.swift; sourceTree = "<group>"; };
 		34AC8BD42A0088F70088AF82 /* FoodAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		410FB0BEEE315C99996EA3C3 /* FoodMenu.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FoodMenu.swift; path = Model/FoodMenu.swift; sourceTree = "<group>"; };
 		52218E9BFD62FC9276E84ED9 /* Pods_FoodApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		548A0D2A00D7BD76F31AC048 /* Pods-FoodAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodAppTests.debug.xcconfig"; path = "Target Support Files/Pods-FoodAppTests/Pods-FoodAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		67AF03C3FFB02E738F06E0B9 /* Pods-FoodAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodAppTests.release.xcconfig"; path = "Target Support Files/Pods-FoodAppTests/Pods-FoodAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		74F75C96D9B1EE76C8425A41 /* Pods-FoodApp-FoodAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodApp-FoodAppUITests.release.xcconfig"; path = "Target Support Files/Pods-FoodApp-FoodAppUITests/Pods-FoodApp-FoodAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7AD0EB4403BDBEC8BD465C80 /* Pods-FoodApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodApp.debug.xcconfig"; path = "Target Support Files/Pods-FoodApp/Pods-FoodApp.debug.xcconfig"; sourceTree = "<group>"; };
+		9F15796B987CA8079D7EA81D /* FoodListViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FoodListViewModel.swift; path = View/FoodTableView/FoodListViewModel.swift; sourceTree = "<group>"; };
 		B3AA4C2A7491CE48BE4523D8 /* Pods-FoodApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodApp.release.xcconfig"; path = "Target Support Files/Pods-FoodApp/Pods-FoodApp.release.xcconfig"; sourceTree = "<group>"; };
 		BD59C2CC2A5FC45D1B19A00F /* Pods_FoodAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F73E5A1B5D29FAB22EB8FA69 /* Pods-FoodApp-FoodAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodApp-FoodAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-FoodApp-FoodAppUITests/Pods-FoodApp-FoodAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -195,6 +199,8 @@
 				34AC8BBA2A0088F70088AF82 /* Assets.xcassets */,
 				34AC8BBC2A0088F70088AF82 /* LaunchScreen.storyboard */,
 				34AC8BBF2A0088F70088AF82 /* Info.plist */,
+				410FB0BEEE315C99996EA3C3 /* FoodMenu.swift */,
+				9F15796B987CA8079D7EA81D /* FoodListViewModel.swift */,
 			);
 			path = FoodApp;
 			sourceTree = "<group>";
@@ -509,6 +515,8 @@
 				348410FF2A00CCFB00329394 /* Ep3Ep4ViewController.swift in Sources */,
 				348410FD2A00C0D500329394 /* Ep2FoodDetailViewController.swift in Sources */,
 				348410F42A009FFF00329394 /* FoodTableViewCell.swift in Sources */,
+				334D9C1E00F1348CF372CB8C /* FoodMenu.swift in Sources */,
+				2FC1194D5E6DDB10EC46D682 /* FoodListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
