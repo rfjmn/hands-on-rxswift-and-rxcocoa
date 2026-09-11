@@ -4,6 +4,10 @@
 
 FoodAppの検索をFoodListViewModel、SearchFoodMenuUseCase、FoodRepositoryへ分離しています。画面選択の購読はweakで画面を参照します。過去エピソードはRxの段階的な比較を維持しつつ、購読による画面の保持を修正しています。FoodMenuCoreで検索結果を検証します。
 
+FoodListViewModelの出力をUIに依存しないFoodCategoryへ整理し、RxDataSourcesへの変換はViewで行います。Schedulerと間隔を注入でき、検索の間引きと購読解除を仮想時刻で検証できます。選択行は詳細遷移時に解除します。
+
+検索条件に加え、間隔内の最新入力、同じ検索語の抑止、保留中の検索の破棄、ViewModelの解放を検証します。
+
 ## 共通の設計基準
 
 - 型・メンバーは必要な範囲だけに公開します。内部状態は`private`、外部から読む状態は必要に応じて`private(set)`にします。プロトコルの要件、Storyboardの接続、サブクラスからの利用を確認して変更します。

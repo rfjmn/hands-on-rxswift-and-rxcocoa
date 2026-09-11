@@ -39,6 +39,16 @@ swift Scripts/verify.swift --index 0
 
 `Quality` ワークフローは上記と同じ一覧・スクリプトを使い、対象ごとにビルドまたはテストを実行します。ビルドの成功だけでは、画面表示、アクセシビリティ、通信先の動作、テスト網羅性は保証されません。UIサンプルはSimulator上での操作確認も必要です。
 
+## 振る舞いの回帰テスト
+
+FoodListViewModelの出力をUIに依存しないFoodCategoryへ整理し、RxDataSourcesへの変換はViewで行います。Schedulerと間隔を注入でき、検索の間引きと購読解除を仮想時刻で検証できます。選択行は詳細遷移時に解除します。
+
+検索条件に加え、間隔内の最新入力、同じ検索語の抑止、保留中の検索の破棄、ViewModelの解放を検証します。
+
+```sh
+swift test --package-path chapter07/FoodApp
+```
+
 ## Swiftコード品質
 
 [設計・命名・所有関係の方針と、この教材への適用範囲](SWIFT-QUALITY.md)を参照してください。

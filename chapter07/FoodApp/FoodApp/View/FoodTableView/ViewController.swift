@@ -7,7 +7,7 @@ final class ViewController: UIViewController {
 
     private let viewModel = FoodListViewModel(searchMenu: SearchFoodMenuUseCase(repository: SampleFoodRepository()))
 
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
 
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var searchBar: UISearchBar!
@@ -30,10 +30,9 @@ final class ViewController: UIViewController {
 
         self.title = "Menu"
 
-        // tableView.delegate = self
-        // tableView.dataSource = self
 
-        viewModel.sections(matching: searchBar.searchTextField.rx.text.orEmpty.asObservable())
+        viewModel.categories(matching: searchBar.searchTextField.rx.text.orEmpty.asObservable())
+            .map { $0.map { SectionModel(header: $0.header, items: $0.items) } }
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
 
@@ -41,7 +40,6 @@ final class ViewController: UIViewController {
             .subscribe(
                 onNext: { [weak self] foodObject in
                     guard let self = self, let foodVC = self.storyboard?.instantiateViewController(withIdentifier: "FoodVC") as? FoodDetailViewController else { return }
-                    // foodVC.imageName = foodObject.image
                     foodVC.imageName.accept(foodObject.image)
                     self.navigationController?.pushViewController(foodVC, animated: true)
                 }
@@ -52,8 +50,8 @@ final class ViewController: UIViewController {
             .rx
             .itemSelected
             .subscribe(
-                onNext: { indexPath in
-                    print(indexPath.row)
+                onNext: { [weak self] indexPath in
+                    self?.tableView.deselectRow(at: indexPath, animated: true)
                 }
             )
             .disposed(by: disposeBag)
